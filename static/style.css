@@ -136,7 +136,7 @@ footer { color: #bd0c38; text-align: center; font-size: 12px; padding: 12px; }
 
 /* Elegant stacked header */
 .elegant-hero { text-align:center; padding:18px 8px 37px; margin-bottom:0; }
-.elegant-hero .hero-eyebrow { color:#bd0c38; font-size:12px; font-weight:800; letter-spacing:.17em; margin:0 0 12px; }
+.elegant-hero .hero-eyebrow { color:#bd0c38; font-size:12px; font-weight:800; letter-spacing:.17em; margin:0 auto 12px; max-width:none; text-align:center; }
 .elegant-hero .hero-title { font-size:clamp(38px,7vw,75px); font-weight:800; line-height:1.08; letter-spacing:-.065em; color:#bd0c38; margin:0; }
 .elegant-hero .hero-title span { color:#ff5482; -webkit-text-stroke:0; }
 .elegant-hero .hero-bottom { display:flex; align-items:center; justify-content:center; gap:18px; margin:15px auto 0; color:#bd0c38; font-weight:750; font-size:14px; letter-spacing:.16em; }
