@@ -43,7 +43,7 @@ def get_whole(value, label, minimum=0):
 def index():
     # Data is received from the current user's form only; nothing is stored globally.
     form = {
-        'final_name': '', 'final_amount': '50', 'price': '10.00',
+        'final_name': '', 'final_amount': '0', 'price': '0.00',
         'materials': [{'name': '', 'per_pack': '', 'pack_cost': '', 'final_count': ''}]
     }
     result = None
@@ -74,7 +74,7 @@ def index():
                     raise ValueError('Enter a name for your finished product.')
                 if not materials:
                     raise ValueError('Add at least one material.')
-                final_amount = get_whole(form['final_amount'], 'Final amount', 1)
+                final_amount = get_whole(form['final_amount'], 'Final amount', 0)
                 price = money(get_decimal(form['price'], 'Selling price'))
                 if price != get_decimal(form['price'], 'Selling price'):
                     raise ValueError('Selling price must have at most two decimal places.')
