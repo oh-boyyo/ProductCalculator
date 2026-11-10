@@ -1,13 +1,13 @@
 /* Change these colors to customize your website. */
 :root {
-  --background: #f8f7fc;
+  --background: #ff5482;
   --surface: #ffffff;
-  --text: #25243b;
-  --muted: #79778b;
-  --accent: #7657c7;
-  --accent-dark: #5d3fa8;
-  --soft-accent: #f1ecfb;
-  --border: #e8e4f0;
+  --text: #82003d;
+  --muted: #c7a5c5;
+  --accent: #c75775;
+  --accent-dark: #73112b;
+  --soft-accent: #ff8fad;
+  --border: #4a0115;
   --radius: 20px;
 }
 * { box-sizing: border-box; }
