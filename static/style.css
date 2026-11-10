@@ -1,6 +1,6 @@
 /* Change these colors to customize your website. */
 :root {
-  --background: #ff5482;
+  --background: #ff8fa8;
   --surface: #ffffff;
   --text: #bd0c38;
   --accent: #ff5482;
@@ -55,3 +55,24 @@ input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .hint { background: var(--accent); color: var(--accent-dark); padding: 12px 15px; border-radius: 10px; font-size: 13px; margin-top: 24px; }
 footer { color: var(--accent); text-align: center; font-size: 12px; padding: 12px; }
 @media (max-width: 700px) { .fields.two, .fields.four, .summary-grid { grid-template-columns: 1fr; } .section-head { display: block; } .material-card { padding: 16px; } .page { padding-top: 30px; } }
+
+
+/* Matching action buttons */
+
+.add-material-button {
+    margin-top: 14px;
+}
+
+.add-material-button:hover {
+    background: var(--accent-dark);
+}
+
+/* Separate calculation section */
+
+.calculate-section h2 {
+    margin-bottom: 18px;
+}
+
+.calculate-button {
+    margin-top: 0;
+}
