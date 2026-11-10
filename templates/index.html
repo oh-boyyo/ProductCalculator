@@ -52,14 +52,28 @@
         </section>
         {% endfor %}
       </div>
-      <button type="button" id="add-material" class="secondary-button">+ Add another material</button>
-      <button type="submit" class="primary-button">Calculate costs & profit →</button>
-      {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+
+    <button type="button" id="add-material" class="primary-button add-material-button">
+      + Add another material
+    </button>
     </form>
+
+    <section class="card calculate-section">
+      <h2>03 <span>Calculate costs & profit</span></h2>
+
+      <button type="submit" form="calculator-form"
+              class="primary-button calculate-button">
+        Calculate costs & profit →
+      </button>
+
+      {% if error %}
+        <p class="error" role="alert">{{ error }}</p>
+      {% endif %}
+    </section>
 
     {% if result %}
     <section class="results card" id="results" aria-live="polite">
-      <div class="section-head"><h2>03 <span>Your results</span></h2><p>For {{ result.final_amount }} {{ form.final_name }}{% if result.final_amount != 1 %}s{% endif %}</p></div>
+      <div class="section-head"><h2>04 <span>Your results</span></h2><p>For {{ result.final_amount }} {{ form.final_name }}{% if result.final_amount != 1 %}s{% endif %}</p></div>
       <div class="summary-grid">
         <div class="metric"><span>Total spending</span><strong>${{ '%.2f'|format(result.total_cost) }}</strong></div>
         <div class="metric"><span>Revenue</span><strong>${{ '%.2f'|format(result.revenue) }}</strong></div>
