@@ -13,23 +13,28 @@
       <h1> Fundraiser <span> Cost & Profit </span> Calculator</h1>
     </header>
 
-    <form method="post" id="calculator-form" class="card">
+    <form method="post" id="calculator-form">
+      <section class="card finished-section">
       <h2>01 <span>Finished product</span></h2>
-      <div class="fields two">
-        <label>What are you making?
-          <input name="final_name" type="text" placeholder="e.g. Candy gram" value="{{ form.final_name }}" required>
-        </label>
-        <label>How many will you make?
-          <input name="final_amount" type="number" min="1" step="1" value="{{ form.final_amount }}" required>
-        </label>
-      </div>
-      <label class="price-field">Selling price per finished item ($)
-        <input name="price" type="number" min="0" step="0.01" value="{{ form.price }}" required>
+      <label class="finished-name">What are you making?
+        <input name="final_name" type="text" value="{{ form.final_name }}" required>
       </label>
-
-      <div class="section-head">
-        <h2>02 <span>Materials</span></h2>
+      <div class="fields two finished-numbers">
+        <label>How many will you make?
+          <input name="final_amount" type="number" min="0" step="1" value="{{ form.final_amount }}" required>
+        </label>
+        <label>Selling price per finished item
+          <span class="currency-input">
+            <span class="currency-symbol" aria-hidden="true">$</span>
+            <input name="price" type="number" min="0" step="0.01" value="{{ form.price }}" required aria-label="Selling price per finished item in dollars">
+          </span>
+        </label>
       </div>
+
+      </section>
+
+      <section class="card materials-section">
+      <h2>02 <span>Materials</span></h2>
       <div id="materials">
         {% for material in form.materials %}
         <section class="material-card" data-material>
@@ -52,14 +57,24 @@
         </section>
         {% endfor %}
       </div>
-      <button type="button" id="add-material" class="primary-button add-material-button">+ Add another material</button>
+
+    <button type="button" id="add-material" class="primary-button add-material-button">
+      + Add another material
+    </button>
+      </section>
     </form>
 
-    <!-- Separate section: the button still submits the form above -->
-    <section class="card calculate-section" aria-labelledby="calculate-heading">
-      <h2 id="calculate-heading">03 <span>Calculate costs & profit</span></h2>
-      <button type="submit" form="calculator-form" class="primary-button calculate-button">Calculate costs & profit →</button>
-      {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+    <section class="card calculate-section">
+      <h2>03 <span>Calculate costs & profit</span></h2>
+
+      <button type="submit" form="calculator-form"
+              class="primary-button calculate-button">
+        Calculate costs & profit →
+      </button>
+
+      {% if error %}
+        <p class="error" role="alert">{{ error }}</p>
+      {% endif %}
     </section>
 
     {% if result %}
@@ -68,7 +83,7 @@
       <div class="summary-grid">
         <div class="metric"><span>Total spending</span><strong>${{ '%.2f'|format(result.total_cost) }}</strong></div>
         <div class="metric"><span>Revenue</span><strong>${{ '%.2f'|format(result.revenue) }}</strong></div>
-        <div class="metric featured"><span>Profit</span><strong>${{ '%.2f'|format(result.profit) }}</strong></div>
+        <div class="metric profit-metric"><span>Profit</span><strong class="{% if result.profit > 0 %}profit-positive{% elif result.profit < 0 %}profit-negative{% endif %}">{% if result.profit > 0 %}+{% elif result.profit < 0 %}-{% endif %}${{ '%.2f'|format(result.profit|abs) }}</strong></div>
       </div>
       <h3>Shopping list</h3>
       <div class="shopping-list">
