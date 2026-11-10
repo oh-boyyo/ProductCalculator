@@ -3,8 +3,8 @@
   --background: #ff8fa8;
   --surface: #ffffff;
   --text: #bd0c38;
-  --accent: #ff8fa8;
-  --accent-dark: #bd0c38;
+  --accent: #ff5482;
+  --accent-dark: #a3002f;
   --border: #4a0115;
   --radius: 20px;
 }
@@ -15,7 +15,7 @@ body { margin: 0; background: var(--background); color: var(--text); font-family
 .hero { text-align: center; margin-bottom: 32px; }
 .eyebrow { color: var(--accent); letter-spacing: .18em; font-size: 12px; font-weight: 800; }
 h1 { font-size: clamp(32px, 5vw, 52px); letter-spacing: -.05em; line-height: 1.1; margin: 14px 0; }
-h1 span { color: #88052d; }
+h1 span { color: var(--accent-dark); }
 .hero p { color: var(--accent); max-width: 540px; margin: 0 auto; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(18px, 4vw, 36px); box-shadow: 0 14px 45px rgba(35, 26, 77, .055); margin-bottom: 22px; }
 h2 { font-size: 13px; color: var(--accent); margin: 0 0 20px; letter-spacing: .03em; }
@@ -56,55 +56,8 @@ input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 footer { color: var(--accent); text-align: center; font-size: 12px; padding: 12px; }
 @media (max-width: 700px) { .fields.two, .fields.four, .summary-grid { grid-template-columns: 1fr; } .section-head { display: block; } .material-card { padding: 16px; } .page { padding-top: 30px; } }
 
-
-/* Matching action buttons */
-
-.add-material-button {
-    margin-top: 14px;
-}
-
-.add-material-button:hover {
-    background: var(--accent-dark);
-}
-
-/* Separate calculation section */
-
-.calculate-section h2 {
-    margin-bottom: 18px;
-}
-
-.calculate-button {
-    margin-top: 0;
-}
-
-/* Finished product: quantity and selling price inputs */
-.finished-name { margin-bottom: 15px; }
-.finished-numbers { margin-top: 0; }
-.currency-input {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border: 1px solid #dcd8e8;
-  border-radius: 10px;
-  background: #ffffff;
-  overflow: hidden;
-}
-.currency-symbol {
-  flex-shrink: 0;
-  padding-left: 13px;
-  font-size: 15px;
-  font-weight: 650;
-  color: var(--text);
-}
-.currency-input input {
-  flex: 1;
-  width: 100%;
-  border: 0;
-  padding-left: 8px;
-  background: transparent;
-}
-.currency-input:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
-}
-.currency-input input:focus { outline: none; }
+/* Matching action buttons; calculator has its own card */
+.add-material-button { margin-top: 14px; }
+.calculate-section h2 { margin-bottom: 18px; }
+.calculate-button { margin-top: 0; }
+.add-material-button:hover { background: var(--accent-dark); }
