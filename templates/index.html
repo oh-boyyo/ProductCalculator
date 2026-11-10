@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Cost & Profit Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">MAKE • PRICE • PLAN</div>
+      <h1>Product Cost <span>& Profit</span> Calculator</h1>
+      <p>Add your materials, compare quantities and selling prices, and know exactly what you'll need to buy.</p>
+    </header>
+
+    <form method="post" id="calculator-form" class="card">
+      <h2>01 <span>Finished product</span></h2>
+      <div class="fields two">
+        <label>What are you making?
+          <input name="final_name" type="text" placeholder="e.g. Candy gram" value="{{ form.final_name }}" required>
+        </label>
+        <label>How many will you make?
+          <input name="final_amount" type="number" min="1" step="1" value="{{ form.final_amount }}" required>
+        </label>
+      </div>
+      <label class="price-field">Selling price per finished item ($)
+        <input name="price" type="number" min="0" step="0.01" value="{{ form.price }}" required>
+      </label>
+
+      <div class="section-head">
+        <h2>02 <span>Materials</span></h2>
+        <p>Enter how much comes in each pack, its cost, and how many units go into one finished item.</p>
+      </div>
+      <div id="materials">
+        {% for material in form.materials %}
+        <section class="material-card" data-material>
+          <div class="material-head"><h3>Material <span class="material-number">{{ loop.index }}</span></h3><button class="remove" type="button" data-remove aria-label="Remove material">Remove</button></div>
+          <input type="hidden" name="material_id" value="{{ loop.index0 }}">
+          <div class="fields four">
+            <label class="material-name">Material name
+              <input name="name_{{ loop.index0 }}" type="text" placeholder="e.g. Ribbon" value="{{ material.name }}" required>
+            </label>
+            <label>Units per pack
+              <input name="per_pack_{{ loop.index0 }}" type="number" min="1" step="1" placeholder="16" value="{{ material.per_pack }}" required>
+            </label>
+            <label>Cost per pack ($)
+              <input name="pack_cost_{{ loop.index0 }}" type="number" min="0" step="0.01" placeholder="6.35" value="{{ material.pack_cost }}" required>
+            </label>
+            <label>Units per finished item
+              <input name="final_count_{{ loop.index0 }}" type="number" min="0" step="1" placeholder="2" value="{{ material.final_count }}" required>
+            </label>
+          </div>
+        </section>
+        {% endfor %}
+      </div>
+      <button type="button" id="add-material" class="secondary-button">+ Add another material</button>
+      <button type="submit" class="primary-button">Calculate costs & profit →</button>
+      {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+    </form>
+
+    {% if result %}
+    <section class="results card" id="results" aria-live="polite">
+      <div class="section-head"><h2>03 <span>Your results</span></h2><p>For {{ result.final_amount }} {{ form.final_name }}{% if result.final_amount != 1 %}s{% endif %}</p></div>
+      <div class="summary-grid">
+        <div class="metric"><span>Total spending</span><strong>${{ '%.2f'|format(result.total_cost) }}</strong></div>
+        <div class="metric"><span>Revenue</span><strong>${{ '%.2f'|format(result.revenue) }}</strong></div>
+        <div class="metric featured"><span>Profit</span><strong>${{ '%.2f'|format(result.profit) }}</strong></div>
+      </div>
+      <h3>Shopping list</h3>
+      <div class="shopping-list">
+        {% for product in result.products %}
+        <div class="shopping-item"><div><b>Packs of {{ product.name }} to buy: {{ product.packs }}</b><small>{{ product.total_units }} units needed · {{ product.leftover }} leftover</small></div><strong>${{ '%.2f'|format(product.total_cost) }}</strong></div>
+        {% endfor %}
+      </div>
+      <p class="hint">Want to adjust the price or final amount? Change the numbers above and click <b>Calculate costs & profit</b> again. Your material entries stay filled in.</p>
+    </section>
+    {% endif %}
+    <footer>Calculations assume you buy whole packs and sell every finished item. Shipping, taxes and other fees are not included unless entered as materials.</footer>
+  </main>
+  <template id="material-template">
+    <section class="material-card" data-material>
+      <div class="material-head"><h3>Material <span class="material-number"></span></h3><button class="remove" type="button" data-remove aria-label="Remove material">Remove</button></div>
+      <input type="hidden" name="material_id" value="__ID__">
+      <div class="fields four">
+        <label class="material-name">Material name<input name="name___ID__" type="text" placeholder="e.g. Ribbon" required></label>
+        <label>Units per pack<input name="per_pack___ID__" type="number" min="1" step="1" placeholder="16" required></label>
+        <label>Cost per pack ($)<input name="pack_cost___ID__" type="number" min="0" step="0.01" placeholder="6.35" required></label>
+        <label>Units per finished item<input name="final_count___ID__" type="number" min="0" step="1" placeholder="2" required></label>
+      </div>
+    </section>
+  </template>
+</body>
+</html>
