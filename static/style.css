@@ -2,10 +2,9 @@
 :root {
   --background: #ff5482;
   --surface: #ffffff;
-  --text: #82003d;
-  --accent: #c75775;
-  --accent-dark: #73112b;
-  --soft-accent: #ff8fad;
+  --text: #bd0c38;
+  --accent: #ff5482;
+  --accent-dark: #4a0115;
   --border: #4a0115;
   --radius: 20px;
 }
@@ -16,7 +15,7 @@ body { margin: 0; background: var(--background); color: var(--text); font-family
 .hero { text-align: center; margin-bottom: 32px; }
 .eyebrow { color: var(--accent); letter-spacing: .18em; font-size: 12px; font-weight: 800; }
 h1 { font-size: clamp(32px, 5vw, 52px); letter-spacing: -.05em; line-height: 1.1; margin: 14px 0; }
-h1 span { color: #ff8fad; }
+h1 span { color: var(--accent-dark); }
 .hero p { color: var(--accent); max-width: 540px; margin: 0 auto; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(18px, 4vw, 36px); box-shadow: 0 14px 45px rgba(35, 26, 77, .055); margin-bottom: 22px; }
 h2 { font-size: 13px; color: var(--accent); margin: 0 0 20px; letter-spacing: .03em; }
@@ -37,7 +36,7 @@ input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .remove:hover { color: #ad3c3c; }
 .remove:disabled { opacity: .3; cursor: not-allowed; }
 .secondary-button, .primary-button { display: block; width: 100%; cursor: pointer; font-size: 14px; font-weight: 750; padding: 13px; border-radius: 11px; }
-.secondary-button { color: var(--accent-dark); border: 1px dashed #ff8fad; background: var(--soft-accent); }
+.secondary-button { color: var(--accent-dark); border: 1px dashed #ff8fad; background: var(--accent); }
 .primary-button { color: white; border: 0; background: var(--accent); margin-top: 20px; font-size: 15px; padding: 16px; }
 .primary-button:hover { background: var(--accent-dark); }
 .error { background: #fff0f0; color: #9c2727; border-radius: 8px; padding: 12px; }
@@ -46,13 +45,13 @@ input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .metric { padding: 18px; border: 1px solid var(--border); border-radius: 13px; display: flex; flex-direction: column; gap: 8px; }
 .metric span { font-size: 12px; color: var(--accent); }
 .metric strong { font-size: clamp(20px, 3vw, 29px); letter-spacing: -.04em; }
-.metric.featured { background: var(--soft-accent); border-color: #daccf5; }
+.metric.featured { background: var(--accent); border-color: var(--border); }
 .metric.featured strong { color: var(--accent-dark); }
 .results h3 { margin-top: 27px; margin-bottom: 10px; }
 .shopping-item { border-bottom: 1px solid var(--border); padding: 13px 0; display: flex; justify-content: space-between; gap: 20px; }
 .shopping-item b { display: block; font-size: 14px; }
 .shopping-item small { display: block; font-size: 12px; color: var(--accent); margin-top: 3px; }
 .shopping-item strong { white-space: nowrap; font-size: 14px; }
-.hint { background: var(--soft-accent); color: var(--accent-dark); padding: 12px 15px; border-radius: 10px; font-size: 13px; margin-top: 24px; }
+.hint { background: var(--accent); color: var(--accent-dark); padding: 12px 15px; border-radius: 10px; font-size: 13px; margin-top: 24px; }
 footer { color: var(--accent); text-align: center; font-size: 12px; padding: 12px; }
 @media (max-width: 700px) { .fields.two, .fields.four, .summary-grid { grid-template-columns: 1fr; } .section-head { display: block; } .material-card { padding: 16px; } .page { padding-top: 30px; } }
