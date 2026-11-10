@@ -9,8 +9,10 @@
 </head>
 <body>
   <main class="page">
-    <header class="hero">
-      <h1> Fundraiser <span> Cost & Profit </span> Calculator</h1>
+    <header class="hero elegant-hero">
+      <p class="hero-eyebrow">F U N D R A I S E R</p>
+      <h1 class="hero-title">Cost <span>&amp;</span> Profit</h1>
+      <div class="hero-bottom"><span class="hero-rule"></span><span>CALCULATOR</span><span class="hero-rule"></span></div>
     </header>
 
     <form method="post" id="calculator-form">
@@ -42,16 +44,19 @@
           <input type="hidden" name="material_id" value="{{ loop.index0 }}">
           <div class="fields four">
             <label class="material-name">Material name
-              <input name="name_{{ loop.index0 }}" type="text" placeholder="e.g. Ribbon" value="{{ material.name }}" required>
+              <input name="name_{{ loop.index0 }}" type="text" value="{{ material.name }}" required>
             </label>
             <label>Units per pack
-              <input name="per_pack_{{ loop.index0 }}" type="number" min="1" step="1" placeholder="16" value="{{ material.per_pack }}" required>
+              <input name="per_pack_{{ loop.index0 }}" type="number" min="1" step="1" value="{{ material.per_pack }}" required>
             </label>
-            <label>Cost per pack ($)
-              <input name="pack_cost_{{ loop.index0 }}" type="number" min="0" step="0.01" placeholder="6.35" value="{{ material.pack_cost }}" required>
+            <label>Cost per pack
+               <span class="currency-input">
+                 <span class="currency-symbol" aria-hidden="true">$</span>
+                <input name="pack_cost_{{ loop.index0 }}" type="number" min="0" step="0.01" value="{{ material.pack_cost }}" required aria-label="Cost per pack in dollars">
+               </span>
             </label>
             <label>Units per finished item
-              <input name="final_count_{{ loop.index0 }}" type="number" min="0" step="1" placeholder="2" value="{{ material.final_count }}" required>
+              <input name="final_count_{{ loop.index0 }}" type="number" min="0" step="1" value="{{ material.final_count }}" required>
             </label>
           </div>
         </section>
@@ -101,10 +106,10 @@
       <div class="material-head"><h3>Material <span class="material-number"></span></h3><button class="remove" type="button" data-remove aria-label="Remove material">Remove</button></div>
       <input type="hidden" name="material_id" value="__ID__">
       <div class="fields four">
-        <label class="material-name">Material name<input name="name___ID__" type="text" placeholder="e.g. Ribbon" required></label>
-        <label>Units per pack<input name="per_pack___ID__" type="number" min="1" step="1" placeholder="16" required></label>
-        <label>Cost per pack ($)<input name="pack_cost___ID__" type="number" min="0" step="0.01" placeholder="6.35" required></label>
-        <label>Units per finished item<input name="final_count___ID__" type="number" min="0" step="1" placeholder="2" required></label>
+        <label class="material-name">Material name<input name="name___ID__" type="text" required></label>
+        <label>Units per pack<input name="per_pack___ID__" type="number" min="1" step="1" required></label>
+        <label>Cost per pack<span class="currency-input"><span class="currency-symbol" aria-hidden="true">$</span><input name="pack_cost___ID__" type="number" min="0" step="0.01" required aria-label="Cost per pack in dollars"></span></label>
+        <label>Units per finished item<input name="final_count___ID__" type="number" min="0" step="1" required></label>
       </div>
     </section>
   </template>
