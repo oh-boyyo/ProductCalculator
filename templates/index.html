@@ -15,20 +15,17 @@
 
     <form method="post" id="calculator-form" class="card">
       <h2>01 <span>Finished product</span></h2>
-      <label class="finished-name">What are you making?
-        <input name="final_name" type="text" value="{{ form.final_name }}" required>
-      </label>
-      <div class="fields two finished-numbers">
-        <label>How many will you make?
-          <input name="final_amount" type="number" min="0" step="1" value="{{ form.final_amount }}" required>
+      <div class="fields two">
+        <label>What are you making?
+          <input name="final_name" type="text" placeholder="e.g. Candy gram" value="{{ form.final_name }}" required>
         </label>
-        <label>Selling price per finished item
-          <span class="currency-input">
-            <span class="currency-symbol" aria-hidden="true">$</span>
-            <input name="price" type="number" min="0" step="0.01" value="{{ form.price }}" required aria-label="Selling price per finished item in dollars">
-          </span>
+        <label>How many will you make?
+          <input name="final_amount" type="number" min="1" step="1" value="{{ form.final_amount }}" required>
         </label>
       </div>
+      <label class="price-field">Selling price per finished item ($)
+        <input name="price" type="number" min="0" step="0.01" value="{{ form.price }}" required>
+      </label>
 
       <div class="section-head">
         <h2>02 <span>Materials</span></h2>
@@ -55,23 +52,14 @@
         </section>
         {% endfor %}
       </div>
-
-    <button type="button" id="add-material" class="primary-button add-material-button">
-      + Add another material
-    </button>
+      <button type="button" id="add-material" class="primary-button add-material-button">+ Add another material</button>
     </form>
 
-    <section class="card calculate-section">
-      <h2>03 <span>Calculate costs & profit</span></h2>
-
-      <button type="submit" form="calculator-form"
-              class="primary-button calculate-button">
-        Calculate costs & profit →
-      </button>
-
-      {% if error %}
-        <p class="error" role="alert">{{ error }}</p>
-      {% endif %}
+    <!-- Separate section: the button still submits the form above -->
+    <section class="card calculate-section" aria-labelledby="calculate-heading">
+      <h2 id="calculate-heading">03 <span>Calculate costs & profit</span></h2>
+      <button type="submit" form="calculator-form" class="primary-button calculate-button">Calculate costs & profit →</button>
+      {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
     </section>
 
     {% if result %}
